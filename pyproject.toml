@@ -1,6 +1,6 @@
 [project]
 name = "mailbaby-client"
-version = "0.1.0"
+version = "0.3.0"
 description = "Python client for MailBaby — REST, gRPC and message-queue ingestion for the mailbaby email delivery service"
 authors = [
     { name = "ZhenYi", email = "434836402@qq.com" }
