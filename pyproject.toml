@@ -1,0 +1,53 @@
+[project]
+name = "mailbaby-client"
+version = "0.1.0"
+description = "Python client for MailBaby — REST, gRPC and message-queue ingestion for the mailbaby email delivery service"
+authors = [
+    { name = "ZhenYi", email = "434836402@qq.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "grpcio>=1.83.0",
+    "httpx>=0.28.1",
+]
+
+[project.optional-dependencies]
+rabbitmq = [
+    "aio-pika>=9.6.2",
+    "pika>=1.4.4",
+]
+redis = [
+    "redis>=8.1.0",
+]
+kafka = [
+    "aiokafka>=0.14.0",
+    "confluent-kafka>=2.15.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "mailbaby"
+
+[dependency-groups]
+dev = [
+    "grpcio-tools>=1.83.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.16.3",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["src/mailbaby/grpc/gen"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["B008"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
